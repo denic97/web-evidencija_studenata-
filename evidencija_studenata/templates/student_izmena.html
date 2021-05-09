@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-contetnt-left" style="max-width: 600px;">
+    <div class="korisnik">
+        <form action="{{ url_for('student_izmena', id=studenti.id) }}", method="post">
+            
+            <h2>Izmeni studenta</h2>
+            
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ime:</label>
+                <input type="text" class="form-control" name="ime" required value="{{studenti.ime}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ime roditelja:</label>
+                <input type="text" class="form-control" name="ime_roditelja" required value="{{studenti.ime_roditelja}}">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Prezime:</label>
+                <input type="text" class="form-control" name="prezime" required value="{{studenti.prezime}}">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Broj indeks:</label>
+                <input type="text" class="form-control" name="broj_ineksa" required value="{{studenti.broj_indeksa}}">
+              </div>
+                
+              <div class="form-group">
+                <label for="exampleInputPassword1">Godina studiranja:</label>
+                <input type="text" class="form-control" name="godina_studija" required value="{{studenti.godina_studija}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">JMBG:</label>
+                <input type="text" class="form-control" name="jmbg" required value="{{studenti.jmbg}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">Datum rodjenja:</label>
+                <input type="date" class="form-control" name="datum" required value="{{studenti.datum_rodjenja}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">Broj telefon:</label>
+                <input type="text" class="form-control" name="broj_telefona" required value="{{studenti.broj_telefona}}">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputPassword1">E-mail:</label>
+                <input type="email" class="form-control" name="email" required value="{{studenti.email}}">
+              </div>
+
+            <div class="form-group"></div>
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+      </form>
+    </div>
+</div>
+
+{% endblock %}

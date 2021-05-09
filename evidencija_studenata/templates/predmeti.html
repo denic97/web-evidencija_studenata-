@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row mt-5 mr-5 justify-content-end">
+        <a href="{{ url_for('predmet_novi') }}" role="button" class="btn btn-primary">Dodaj predmet</a>
+    </div>
+
+    <div class="row m-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sifra</th>
+                    <th scope="col">Naziv</th>
+                    <th scope="col">Godina Studija</th>
+                    <th scope="col">ESPB</th>
+                    <th scope="col">Obavezni i Izborni</th>
+                    <th scope="col">Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for predmet in predmeti %}
+                <tr>
+                    <td>{{ predmet.sifra }}</td>
+                    <td>{{ predmet.naziv }}</td>
+                    <td>{{ predmet.godina_studija }}</td>
+                    <td>{{ predmet.espb }}</td>
+                    <td>{{ predmet.obavezni_izborni }}</td>
+                    <td class="row">
+                        <a href="{{ url_for('predmeti_izmena', id=predmet.id) }}" role="button" class="text-warning mx-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{{ url_for('predmeti_brisanje', id=predmet.id) }}" role="button" class="text-danger mx-1">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        <a href="{{ url_for('export', tip='predmeti') }}" role="button" class="btn btn-success mr-3">Export</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

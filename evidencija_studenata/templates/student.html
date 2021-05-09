@@ -1,0 +1,135 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col m-5">
+                <table class="table">
+                    <tbody>
+                            <tr>
+                                <th scope="col">Ime</th>
+                                <td>{{ student.ime }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Ime Roditelja</th>
+                                <td>{{ student.ime_roditelja }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Prezima</th>
+                                <td>{{ student.prezime }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Br. Indeksa</th>
+                                <td>{{ student.broj_indeksa }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Godina studija</th>
+                                <td>{{ student.godina_studija }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Br. telefona</th>
+                                <td>{{ student.broj_telefona }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Email</th>
+                                <td>{{ student.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Datum rodjenja</th>
+                                <td>{{ student.datum_rodjenja }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">JMBG</th>
+                                <td>{{ student.jmbg }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Ukupno ESPB</th>
+                                <td>{{ student.espb }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Prosek ocena</th>
+                                <td>{{ student.prosek_ocena }}</td>
+                            </tr>
+                            <tr>
+                                <th>Akcija</th>
+                                <td class="row">
+                                    <a href="{{ url_for('student_izmena', id=student.id) }}" role="button" class="text-warning mx-1">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{{ url_for('student_brisanje', id=student.id) }}" role="button" class="text-danger mx-1">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col m-5">
+                <form action="{{ url_for('ocena_nova', id=student.id) }}" method="post">
+                    
+                    <div class="form-group">
+
+                         <label>Predmet</label>
+
+                         <select class="form-control" id="predmet_id" name="predmet_id">
+                             <option">Odaberi predmet</option>
+                             {% for predmet in predmeti %}
+                             <option value="{{ predmet.id }}">{{ predmet.naziv }}</option>
+                             {% endfor %}
+                         </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Ocena</label>
+                      <input type="text" class="form-control" name="ocena" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Datum</label>
+                      <input type="date" class="form-control" name="datum" required>
+                    </div>
+            
+                    <div class="text-center"><button type="submit" class="btn btn-primary">Dodaj ocenu</button></div>
+                  </form>
+            </div>
+        </div>
+        <div class="row m-5">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Sifra</th>
+                        <th scope="col">Naziv</th>
+                        <th scope="col">Godina Studija</th>
+                        <th scope="col">Obavezni i Izborni</th>
+                        <th scope="col">ESPB</th>
+                        <th scope="col">Ocena</th>
+                        <th scope="col">Akcija</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ocena in ocene %}
+                    <tr>
+                        <td>{{ ocena.sifra }}</td>
+                        <td>{{ ocena.naziv }}</td>
+                        <td>{{ ocena.godina_studija }}</td>
+                        <td>{{ ocena.obavezni_izborni }}</td>
+                        <td>{{ ocena.espb }}</td>
+                        <td>{{ ocena.ocena }}</td>
+                        <td class="row">
+                            {% if (rola == "Administrator") %}
+                            <a href="{{ url_for('ocena_izmena', id=student.id , ocena_id=ocena.id) }}" role="button" class="text-warning mx-1">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{ url_for('ocena_brisanje', id=student.id, ocena_id=ocena.id) }}" role="button" class="text-danger mx-1">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-contetnt-left" style="max-width: 600px;">
+    <div class="row">
+        <form action="{{ url_for('predmet_novi') }}", method="post">
+            <h2>Novi predmet</h2>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Sifra:</label>
+                <input type="text" class="form-control" name="sifra" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Naziv:</label>
+                <input type="text" class="form-control" name="naziv" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Godina studiranja:</label>
+                <input type="text" class="form-control" name="godina" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">ESPB:</label>
+                <input type="text" class="form-control" name="espb" required>
+              </div>
+              <div class="form-group">
+                <label for="expampleInputInput1">Obavezni / Izborni:</label>
+                <select class="form-control" name="o/i" required>
+                    <option value="Obavezni">Obavezni</option>
+                    <option value="Izabrani">Izabrani</option>
+                </select>
+           </div>
+            <div class="form-group"></div>
+            <button type="submit" class="btn btn-primary">Sacuvaj</button>
+      </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <div class="container  mt-5 d-flex justify-contetnt-left" style="max-width: 600px;">
+        <div class="row">
+            <form action="{{ url_for('ocena_izmena', id=id, ocena_id=data_ocena.id) }}" method="POST">
+
+                <h3>Izmeni ocenu</h3>
+
+                <div class="form-group">
+
+                    <label>Predmet</label>
+
+                    <select class="form-control" id="predmet_id" name="predmet_id" required>
+                        <option">Odaberi predmet</option>
+                        {% for predmet in predmeti %}
+                        <option value="{{ predmet.id }}">{{ predmet.naziv }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Ocena:</label>
+                    <input type="text" class="form-control" name="ocena" value="{{ data_ocena.ocena }}" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Datum:</label>
+                    <input type="date" class="form-control" name="datum" value="{{ data_ocena.datum }}" required>
+                </div>
+    
+                <div class="text-center"><button type="submit" class="btn btn-primary">Promeni ocenu</button></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

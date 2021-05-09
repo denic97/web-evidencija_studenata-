@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container mt-5 d-flex justify-contetnt-left" style="max-width: 600px;">
+    <div class="row">
+        <form action="{{ url_for('korisnik_novi') }}", method="POST" >
+            <h2>Novi korisnik</h2>
+            
+            
+            <div class="form-group">
+              <label for="exampleInputEmail1">Ime:</label>
+              <input type="text" class="form-control" name="ime" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Prezime:</label>
+                <input type="text" class="form-control" name="prezime" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Email:</label>
+                <input type="email" class="form-control" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Lozinka:</label>
+                <input type="password" class="form-control" name="lozinka" required>
+              </div>
+              
+              <div class="form-group">
+                <label>Rola:</label>
+                <select class="form-control" id="rola" name="rola" required>
+                    <option>Odaberi rolu</option>
+                    <option value="Administrator">Administrator</option>
+                    <option value="Profesor">Profesor</option>
+                </select>
+              </div>
+
+            <div class="form-group"></div>
+            <button type="submit" class="btn btn-primary">Napravi</button>
+          </form>
+    </div>
+</div>
+
+{% endblock %}
